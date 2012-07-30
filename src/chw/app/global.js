@@ -188,7 +188,7 @@ var helper = {
                 var comp = Ext.getCmp(arg);
                 comp.setUi('decline');
                 comp.setDisabled(true);
-                Ext.ComponentQuery.query('visitDetails #'+arg+'_audio')[0].play();
+                // Ext.ComponentQuery.query('visitDetails #'+arg+'_audio')[0].play();
             }
         })
     }

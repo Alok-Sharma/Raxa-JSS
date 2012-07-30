@@ -64,7 +64,62 @@ Ext.define('chw.view.visitDetails', {
             padding: '10px',
             height: '80%',
             width: '100%',
-            items: []
+            items: [{
+                xtype: 'button',
+                id: 'vis_ors',
+                text: 'ORS',
+                ui: 'confirm',
+                disabled: false,
+                listeners: {
+                    tap: function () {
+                        helper.doVis(this.id)
+                    }
+                } 
+            }, {
+                xtype: 'button',
+                id: 'vis_rdt',
+                text: 'RDT',
+                ui: 'confirm',
+                disabled: false,
+                listeners: {
+                    tap: function () {
+                        helper.doVis(this.id)
+                    }
+                } 
+            }, {
+                xtype: 'button',
+                id: 'vis_vita',
+                text: 'Vitamin A',
+                ui: 'confirm',
+                disabled: false,
+                listeners: {
+                    tap: function () {
+                        helper.doVis(this.id)
+                    }
+                } 
+            }, {
+                xtype: 'button',
+                id: 'vis_alb',
+                text: 'Albendazole',
+                ui: 'confirm',
+                disabled: false,
+                listeners: {
+                    tap: function () {
+                        helper.doVis(this.id)
+                    }
+                } 
+            }, {
+                xtype: 'button',
+                id: 'vis_blood',
+                text: 'Blood Sample',
+                ui: 'confirm',
+                disabled: false,
+                listeners: {
+                    tap: function () {
+                        helper.doVis(this.id)
+                    }
+                } 
+            }]
         }]
     }
 })

@@ -531,7 +531,8 @@ Ext.define('chw.controller.basic', {
         if (arg==='start') {
             // TODO: get type of visit
             // TODO: get list of tasks associated with visit type
-            var taskList = [VIS.ORS, VIS.RDT, VIS.VITA, VIS.ALB, VIS.BLOOD]
+            // var taskList = [VIS.ORS, VIS.RDT, VIS.VITA, VIS.ALB, VIS.BLOOD]
+            var taskList = []
             // get container for task buttons
             var c = Ext.ComponentQuery.query('visitDetails #visitChecklist')[0]
             var cont = Ext.create('Ext.Container', {
@@ -575,8 +576,6 @@ Ext.define('chw.controller.basic', {
                 cont.add(cell);
             }
             c.add(cont)
-            // Ext.getCmp('visitDetailsPanel').doLayout();
-            c.doLayout()
         }
     }
 })

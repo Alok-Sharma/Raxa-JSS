@@ -21,35 +21,35 @@ Ext.define('chw.store.visits', {
         data: [{
             id: 'vis_ors',
             visitText: 'ORS',
-            visitDetail: 'Administer Oral Rehydration Salts',
+            visitDetail: Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.vis_ors'),
             visitAudio: 'resources/ping.amr',
             visitComplete: false,
             visitInclude: true
         }, {
             id: 'vis_rdt',
             visitText: 'RDT',
-            visitDetail: 'Administer Rapid Diagnostic Test for malaria',
+            visitDetail: Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.vis_rdt'),
             visitAudio: 'resources/ping.amr',
             visitComplete: false,
             visitInclude: true
         }, {
             id: 'vis_vita',
             visitText: 'Vitamin A',
-            visitDetail: 'Check if Vitamin A has been administered',
+            visitDetail: Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.vis_vita'),
             visitAudio: 'resources/ping.amr',
             visitComplete: false,
             visitInclude: true
         }, {
             id: 'vis_alb',
             visitText: 'Albendazole',
-            visitDetail: 'Check if Albendazole has been administered',
+            visitDetail: Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.vis_alb'),
             visitAudio: 'resources/ping.amr',
             visitComplete: false,
             visitInclude: true
         }, {
             id: 'vis_blood',
             visitText: 'Blood sample',
-            visitDetail: 'Take a blood sample for CBC',
+            visitDetail: Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.vis_blood'),
             visitAudio: 'resources/ping.amr',
             visitComplete: false,
             visitInclude: true
