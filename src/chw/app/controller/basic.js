@@ -575,7 +575,8 @@ Ext.define('chw.controller.basic', {
                 cont.add(cell);
             }
             c.add(cont)
-            Ext.getCmp('visitDetailsPanel').refresh();
+            console.log(Ext.getCmp('visitDetailsPanel'))
+            Ext.getCmp('visitDetailsPanel')[0].refresh();
         }
     }
 })
