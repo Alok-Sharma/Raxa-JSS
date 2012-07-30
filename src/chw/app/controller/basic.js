@@ -194,7 +194,7 @@ Ext.define('chw.controller.basic', {
                 var birthDay = Ext.ComponentQuery.query('AddPatient #bday')[0].getValue();
                 var imageLocation = Ext.ComponentQuery.query('AddPatient #imageField')[0].getValue();
                 var patientAgeVal = Ext.ComponentQuery.query('AddPatient #patientAge')[0].getValue();
-                imageLocation = '/Raxa-JSS/chw/resources/'+imageLocation
+                imageLocation = 'resources/'+imageLocation
                 
                 if(firstNameVal=='' || lastNameVal== '' || !radioform.radiogroup || imageLocation==''){
                     Ext.Msg.alert(Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.error'), Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.fillAllFieldsError'));
