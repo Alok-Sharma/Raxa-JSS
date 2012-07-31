@@ -22,31 +22,64 @@ Ext.define('Laboratory.view.PaperEntry1', {
     activeItem: 0,
 
     layout: {
-        type: 'absolute'
+        type: 'absolute',
     },
 
     items: [{
-        xtype: 'gridpanel',
-        height: 343,
-        width: 275,
-        title: 'Lab Orders waiting results',
-        columns: [{
-            xtype: 'gridcolumn',
-            width: 273,
-            dataIndex: 'string',
-            text: 'Details'
-        }],
-        viewConfig: {
+        xtype: 'laborderlistgrid',
+        id: 'labOrderListPaperEntry',
+        title: 'List of Lab Orders',
+        width: 200,
+        height: 400,
+        store: Ext.create('Laboratory.store.LabOrderSearch'),
+        listeners: {
+            click: {
+                element: 'el', //bind to the underlying el property on the panel
+                fn: function () {
+                    var l = Ext.getCmp('mainLabArea').getLayout();
+                    l.setActiveItem(LAB_PAGES.PAPER_ENTRY_ENTER_DATA.value);
+                    var grid = Ext.getCmp('labOrderListPaperEntry');
+                    var pos = grid.getSelectionModel().selected.length;
+                    selectedLabOrderId = '2012.01/0001';
+                    selectedPatientDisplay = 'Pinky Singh';
+//                    selectedPatientUuid = grid.store.data.items[pos - 1].raw.patient.uuid;
+//                    selectedLabOrderIdUuid = grid.store.data.items[pos - 1].raw.uuid;
 
-        }
-    }, {
-        xtype: 'button',
-        margin: '10 50 0 270',
-        width: 60,
-        text: 'Search',
-        handler: function () {
-            var l = Ext.getCmp('mainLabArea').getLayout();
-            l.setActiveItem(LAB_PAGES.PAPER_ENTRY_SEARCH.value);
+                    //Sets the LabOrderId and Patient's Name in the view
+                    Ext.getCmp('LabOrderNoPaperEntry4Panel').setValue(selectedLabOrderId);
+                    Ext.getCmp('patientDisplayPaperEntry4Panel').setValue(selectedPatientDisplay);
+					Ext.getCmp('providerDisplayPaperEntry4Panel').setValue('Dr. Alok Mehta');
+					Ext.getCmp('patientDOBPaperEntry4Panel').setValue('30-July-2008');
+					Ext.getCmp('providerLocationPaperEntry4Panel').setValue('JSS Ganiyari');
+					Ext.getCmp('patientIdPaperEntry4Panel').setValue('1353464746');
+
+  /*                  var resultGrid = Ext.getCmp('results');
+
+                    //This Ajax call gets the uuid of LabSpecimen concept which is used to set the proxy of concept store
+                    Ext.Ajax.request({
+                        url: LAB_HOST + '/ws/rest/v1/order/' + selectedLabOrderIdUuid + '?v=full',
+                        method: 'GET',
+                        disableCaching: false,
+                        headers: {
+                            "Accept": "application/json",
+                            "Authorization": "Basic " + window.btoa(LAB_USERNAME + ":" + LAB_PASSWORD),
+                            "Content-Type": "application/json"
+                        },
+                        failure: function (response) {
+                            console.log('GET on laborder failed with response status: ' + response.status);
+                        },
+                        success: function (response) {
+                            var JSONResult = JSON.parse(response.responseText);
+                            conceptUuid = JSONResult.concept.uuid;
+                            // This is to change the proxy by getting corresponding concept uuid from order
+                            resultGrid.store.getProxy().url = LAB_HOME + '/ws/rest/v1/concept/' + conceptUuid + '?v=full';
+                            resultGrid.store.load();
+                        }
+                    });
+*/
+
+                }
+            }
         }
     }]
 

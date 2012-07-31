@@ -47,7 +47,7 @@ Ext.define('Laboratory.view.Viewport', {
                       }
                 } , {
                     xtype: 'tbtext',
-                    text: 'Logged in as ' + username
+                    text: 'Logged in as Admin'
                 }, {
                     xtype: 'tbseparator'
                 }, {
@@ -195,7 +195,7 @@ Ext.define('Laboratory.view.Viewport', {
                 xtype: 'ReportApproval3'
             }, {
                 xtype: 'ReportApproval4'
-            } ]
+            }]
         };
         this.callParent();
     }
