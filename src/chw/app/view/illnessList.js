@@ -40,7 +40,7 @@ Ext.define('chw.view.illnessList', {
             height: '80%',
             centered: true,
             indexBar: true,
-            emptyText: '</pre><div>No patients with this illness found.</div><pre>',
+            emptyText: '</pre><div class="notes-list-empty-text"><center><br>'+Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.noPatients')+'<br></center></div><pre>',
             itemTpl: [
                 '<div style="float:left;width:32px;height:32px"><img src="{patientDetails.patientImage}" height="80%" width="80%"/></div>',
                 '<div style="float:left;width:60%">',
