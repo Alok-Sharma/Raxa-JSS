@@ -18,6 +18,7 @@ Ext.define('chw.view.loginScreen', {
     requires: ['chw.view.okCancel'],
     alias: 'widget.LoginScreen',
     config: {
+        scrollable: true,
         items: [{
             xtype: 'titlebar',
             title: Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.chw'),

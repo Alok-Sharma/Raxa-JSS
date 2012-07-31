@@ -278,6 +278,7 @@ Ext.define('chw.controller.basic', {
     },
     doBack: function () {
         var active = Ext.getCmp('viewPort').getActiveItem();
+        console.log(active.id)
         if(active.id=='ext-panel-5' || active.id=='ext-familyDetails-1' || active.id=='ext-panel-3' || active.id=='ext-tabpanel-2' || active.id=='ext-panel-1'){
             //Go back to family list
             this.doList('familyList');
