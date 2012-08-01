@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
 //Store for mapping patients with illnesses
 Ext.define('chw.store.patientsIllnesses', {
     extend: 'Ext.data.Store',

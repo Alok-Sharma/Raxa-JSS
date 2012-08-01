@@ -30,7 +30,7 @@ Ext.define('chw.view.visitDetails', {
                 xtype: 'button',
                 ui: 'back',
                 text: Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.back'),
-                action:'goback'
+                action: 'goback'
             }]
         }, {
             xclass: 'chw.view.userToolbar'
@@ -74,7 +74,7 @@ Ext.define('chw.view.visitDetails', {
                     tap: function () {
                         helper.doVis(this.id)
                     }
-                } 
+                }
             }, {
                 xtype: 'button',
                 id: 'vis_rdt',
@@ -85,7 +85,7 @@ Ext.define('chw.view.visitDetails', {
                     tap: function () {
                         helper.doVis(this.id)
                     }
-                } 
+                }
             }, {
                 xtype: 'button',
                 id: 'vis_vita',
@@ -96,7 +96,7 @@ Ext.define('chw.view.visitDetails', {
                     tap: function () {
                         helper.doVis(this.id)
                     }
-                } 
+                }
             }, {
                 xtype: 'button',
                 id: 'vis_alb',
@@ -107,7 +107,7 @@ Ext.define('chw.view.visitDetails', {
                     tap: function () {
                         helper.doVis(this.id)
                     }
-                } 
+                }
             }, {
                 xtype: 'button',
                 id: 'vis_blood',
@@ -118,7 +118,7 @@ Ext.define('chw.view.visitDetails', {
                     tap: function () {
                         helper.doVis(this.id)
                     }
-                } 
+                }
             }]
         }]
     }

@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
 //Storing family details
 Ext.define('chw.store.families', {
     extend: 'Ext.data.Store',

@@ -27,13 +27,13 @@ Ext.define('chw.controller.basic', {
                     this.doOption(false)
                 }
             },
-            "button[action=goback]":{
-                tap:function(){
+            "button[action=goback]": {
+                tap: function () {
                     this.doBack();
                 }
             },
-            "button[action=goToAddPatient]":{
-                tap:function(){
+            "button[action=goToAddPatient]": {
+                tap: function () {
                     this.doOption(true);
                 }
             },
@@ -59,9 +59,9 @@ Ext.define('chw.controller.basic', {
                     this.doInventory('reduce')
                 }
             },
-            "selectfield[action=langfield]":{
-                change:function(option){
-                    localStorage.setItem('lang',option.getValue());
+            "selectfield[action=langfield]": {
+                change: function (option) {
+                    localStorage.setItem('lang', option.getValue());
                     window.location = "."
                 }
             },
@@ -70,11 +70,11 @@ Ext.define('chw.controller.basic', {
                     this.doToolbar('list')
                 }
             },
-//            "button[action=locateButton]": {
-//                tap: function () {
-//                    this.doToolbar('locate')
-//                }
-//            },
+            //            "button[action=locateButton]": {
+            //                tap: function () {
+            //                    this.doToolbar('locate')
+            //                }
+            //            },
             "button[action=logoutButton]": {
                 tap: function () {
                     this.doToolbar('logout')
@@ -109,7 +109,7 @@ Ext.define('chw.controller.basic', {
             fullscreen: true,
             layout: 'card',
             activeItem: PAGES.loginScreen,
-            items: [{   
+            items: [{
                 xclass: 'chw.view.loginScreen'
             }, {
                 xclass: 'chw.view.familyList'
@@ -142,29 +142,29 @@ Ext.define('chw.controller.basic', {
             }]
         })
     },
-    
-    doAdd: function(step,arg){
-        if(arg){
-            if(step==='family'){
+
+    doAdd: function (step, arg) {
+        if (arg) {
+            if (step === 'family') {
                 //Adding a  family
                 var name = Ext.getCmp('familyName').getValue();
                 var address = Ext.getCmp('address').getValue();
                 var description = Ext.getCmp('description').getValue();
                 var familyImageVal = Ext.getCmp('familyImage').getValue();
-                
-                if(name=='' || address==''){
-                    Ext.Msg.alert(Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.error'), 
+
+                if (name == '' || address == '') {
+                    Ext.Msg.alert(Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.error'),
                     Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.fillAllFieldsError'));
-                }else{
+                } else {
                     var familyStore = Ext.getStore('families');
-                    if(!familyStore){
+                    if (!familyStore) {
                         familyStore = Ext.create('chw.store.families');
                     }
                     //Assign family ID using the number of families already in store. These ID start from 1
                     var familyCount = familyStore.getCount();
-                    familyCount = familyCount+1;
-                    
-                    var familyModel = Ext.create('chw.model.family',{
+                    familyCount = familyCount + 1;
+
+                    var familyModel = Ext.create('chw.model.family', {
                         familyName: name,
                         familyAddress: address,
                         familyDescrip: description,
@@ -173,11 +173,11 @@ Ext.define('chw.controller.basic', {
                         familyLongitude: 25,
                         //Hard-coded image of family. This is where the image location would
                         //be inserted when the user takes the image using the camera.
-                        familyImage: 'resources/'+familyImageVal, 
+                        familyImage: 'resources/' + familyImageVal,
                         //Calculate distance using GPS and insert here
                         familyDistance: 20
                     });
-                    
+
                     familyStore.add(familyModel);
                     familyStore.sync();
                     Ext.getCmp('familyName').reset();
@@ -185,7 +185,7 @@ Ext.define('chw.controller.basic', {
                     Ext.getCmp('description').reset();
                     Ext.getCmp('viewPort').setActiveItem(PAGES.familyList);
                 }
-            } else if(step==='patient') {
+            } else if (step === 'patient') {
                 //Add a patient
                 var familyIdVal = Ext.ComponentQuery.query('AddPatient #familyId')[0].getValue();
                 var firstNameVal = Ext.ComponentQuery.query('AddPatient #firstName')[0].getValue();
@@ -194,30 +194,30 @@ Ext.define('chw.controller.basic', {
                 var birthDay = Ext.ComponentQuery.query('AddPatient #bday')[0].getValue();
                 var imageLocation = Ext.ComponentQuery.query('AddPatient #imageField')[0].getValue();
                 var patientAgeVal = Ext.ComponentQuery.query('AddPatient #patientAge')[0].getValue();
-                imageLocation = 'resources/'+imageLocation
-                
-                if(firstNameVal=='' || lastNameVal== '' || !radioform.radiogroup || imageLocation==''){
+                imageLocation = 'resources/' + imageLocation
+
+                if (firstNameVal == '' || lastNameVal == '' || !radioform.radiogroup || imageLocation == '') {
                     Ext.Msg.alert(Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.error'), Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.fillAllFieldsError'));
-                }else{
+                } else {
                     //Move ahead with adding the patient
                     var gender = radioform.radiogroup.charAt(0);
                     var patientStore = Ext.getStore('patients');
-                    if(!patientStore){
+                    if (!patientStore) {
                         Ext.create('chw.store.patients');
                     }
-                    
+
                     //Removing the filter from the patient store so that counting 
                     //the number of patients in store gives a correct count. Before removing filter
                     //its being saved first.
-                    var saveFilter= patientStore.getFilters();
+                    var saveFilter = patientStore.getFilters();
                     patientStore.clearFilter()
                     var patientCount = patientStore.getCount();
-                    patientCount = patientCount+1;
+                    patientCount = patientCount + 1;
                     //After counting, re-apply whatever filter it had.
                     patientStore.setFilters(saveFilter);
                     patientStore.load();
-                    
-                    var patientModel = Ext.create('chw.model.patient',{
+
+                    var patientModel = Ext.create('chw.model.patient', {
                         familyId: familyIdVal,
                         patientId: patientCount,
                         firstName: firstNameVal,
@@ -230,13 +230,13 @@ Ext.define('chw.controller.basic', {
                         //which the location should be inserted here
                         patientImage: imageLocation
                     });
-                    
+
                     patientStore.add(patientModel);
                     patientStore.sync();
                     Ext.getCmp('ext-AddPatient-1').reset();
                     Ext.getCmp('viewPort').setActiveItem(PAGES.familyDetails);
                 }
-            } else if (step==='illness') {
+            } else if (step === 'illness') {
                 //Add an illness
                 var patientIdVal = Ext.ComponentQuery.query('addIllness #patientIdField')[0].getValue();
                 var patientStore = Ext.getStore('patients')
@@ -244,14 +244,14 @@ Ext.define('chw.controller.basic', {
                 // console.log(patientStore.data.all[patientIdVal - 1].getData())
                 // console.log(patientStore)
                 // var patientDetailsVal = patientStore.getAt(patientIdVal - 1).getData();
-                var patientDetailsVal = patientStore.data.all[patientIdVal-1].getData()
+                var patientDetailsVal = patientStore.data.all[patientIdVal - 1].getData()
                 var illnessIdVal = Ext.ComponentQuery.query('addIllness #illnessNameField')[0].getRecord().data.illnessId;
                 var illnessDetailsVal = Ext.ComponentQuery.query('addIllness #illnessNameField')[0].getRecord().data;
                 var illnessStartVal = Ext.ComponentQuery.query('addIllness #illnessStartDate')[0].getValue();
                 var illnessEndVal = Ext.ComponentQuery.query('addIllness #illnessEndDate')[0].getValue();
                 var illnessTreatmentVal = Ext.ComponentQuery.query('addIllness #illnessTreatmentField')[0].getValue();
                 var illnessNotesVal = Ext.ComponentQuery.query('addIllness #illnessNotesField')[0].getValue();
-                if (illnessDetailsVal===''||illnessStartVal===''||illnessEndVal===''||illnessTreatmentVal===''||illnessNotesVal==='') {
+                if (illnessDetailsVal === '' || illnessStartVal === '' || illnessEndVal === '' || illnessTreatmentVal === '' || illnessNotesVal === '') {
                     Ext.Msg.alert(Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.error'), Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.fillAllFieldsError'));
                 } else {
                     var piStore = Ext.getStore('patientsIllnesses');
@@ -279,32 +279,32 @@ Ext.define('chw.controller.basic', {
     doBack: function () {
         var active = Ext.getCmp('viewPort').getActiveItem();
         console.log(active.id)
-        if(active.id=='ext-panel-5' || active.id=='ext-familyDetails-1' || active.id=='ext-panel-3' || active.id=='ext-tabpanel-2' || active.id=='ext-panel-1'){
+        if (active.id == 'ext-panel-5' || active.id == 'ext-familyDetails-1' || active.id == 'ext-panel-3' || active.id == 'ext-tabpanel-2' || active.id == 'ext-panel-1') {
             //Go back to family list
             this.doList('familyList');
             Ext.getCmp('viewPort').setActiveItem(PAGES.familyList)
-        }else if(active.id == 'ext-AddPatient-1' || active.id=='ext-patientDetails-1'){
+        } else if (active.id == 'ext-AddPatient-1' || active.id == 'ext-patientDetails-1') {
             //Go back to family details
             helper.listDisclose('family', savedFamilyRecord)
-        }else if(active.id=='inventoryDetails'){
+        } else if (active.id == 'inventoryDetails') {
             //Go back to inventory list
             this.doToolbar('inventory')
-        }else if(active.id=='ext-resourceDetail-1'){
+        } else if (active.id == 'ext-resourceDetail-1') {
             //Go back to resource list
             this.doToolbar('resources')
-        }else if(active.id=='illnessDetails'){
+        } else if (active.id == 'illnessDetails') {
             //Since illnessDetails can be reached from two separate views,
             //we are maintaining one global var 'toHistoryFrom' which saves
             //which page we came into illnessDetails from
-            if(toHistoryFrom == 'patientDetails'){
+            if (toHistoryFrom == 'patientDetails') {
                 //go back to patient details
                 helper.listDisclose('patient', savedPatientRecord)
-            }else if(toHistoryFrom == 'ipatient'){
+            } else if (toHistoryFrom == 'ipatient') {
                 //or disease list
                 //This is not working. Something might be broken.
                 helper.listDisclose('illness', savedIllnessRecord)
             }
-        }else{
+        } else {
             //If youve added a new view and have not handled it's back button functionality
             //this will console it's page id
             console.log(active.id);
@@ -314,32 +314,32 @@ Ext.define('chw.controller.basic', {
         // prompt user to input amount of pills to decrease or increase
         // TODO: do we need to document to whom this interaction is being made?
         if (!amt) {
-            if (arg==='add') {
+            if (arg === 'add') {
                 Ext.Msg.prompt('Add', 'How many pills would you like to add?', function (resp, input) {
-                    if (resp==='ok') {
+                    if (resp === 'ok') {
                         this.doInventory('add', input)
                     }
                 })
-            } else if (arg==='reduce') {
+            } else if (arg === 'reduce') {
                 Ext.Msg.prompt('Reduce', 'How many pills would you like to reduce?', function (resp, input) {
-                    if (resp==='ok') {
+                    if (resp === 'ok') {
                         this.doInventory('reduce', input)
                     }
                 })
             }
         } else {
             // TODO: increase the pill amount
-            if (arg==='add') {
-                
+            if (arg === 'add') {
+
             }
             // TODO: decrease the pill amount
-            else if (arg==='reduce') {
-                
+            else if (arg === 'reduce') {
+
             }
-        // TODO: refresh the page
-        // TODO: send this amount to the server for notifying the  main hospital
+            // TODO: refresh the page
+            // TODO: send this amount to the server for notifying the  main hospital
         }
-    }, 
+    },
     doExit: function () {
         USER.name = '';
         USER.uuid = '';
@@ -349,10 +349,10 @@ Ext.define('chw.controller.basic', {
         if (arg) {
             // fetch and store items
             USER.name = Ext.ComponentQuery.query('LoginScreen #usernameIID')[1].getValue();
-            var pass = Ext.ComponentQuery.query('LoginScreen #passwordIID')[1].getValue(); 
-            if (USER.name===''||pass==='') {
+            var pass = Ext.ComponentQuery.query('LoginScreen #passwordIID')[1].getValue();
+            if (USER.name === '' || pass === '') {
                 Ext.Msg.alert(Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.error'),
-                    Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.fillAllFieldsError'))
+                Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.fillAllFieldsError'))
             } else {
                 // Get user information from the server
                 Ext.Ajax.request({
@@ -364,7 +364,7 @@ Ext.define('chw.controller.basic', {
                     headers: HEADERS,
                     success: function (resp) {
                         var userInfo = Ext.decode(resp.responseText);
-                        if (userInfo.results.length!==0) {
+                        if (userInfo.results.length !== 0) {
                             Ext.Ajax.request({
                                 scope: this,
                                 url: userInfo.results[0].links[0].uri + '?v=full',
@@ -375,7 +375,7 @@ Ext.define('chw.controller.basic', {
                                 success: function (resp) {
                                     var userInf = Ext.decode(resp.responseText);
                                     //Once we have the user uuid verified, we now store these in local storage.
-                                    localStorage.setItem('uuid',userInf.person.uuid)
+                                    localStorage.setItem('uuid', userInf.person.uuid)
                                 },
                                 failure: function () {}
                             })
@@ -395,7 +395,7 @@ Ext.define('chw.controller.basic', {
                 })
                 // check login and save to localStorage if valid
                 Ext.Ajax.request({
-                    scope:this,
+                    scope: this,
                     url: MRSHOST + '/ws/rest/v1/session',
                     withCredentials: true,
                     useDefaultXhrHeader: false,
@@ -417,8 +417,8 @@ Ext.define('chw.controller.basic', {
                         } else {
                             Ext.ComponentQuery.query('LoginScreen #usernameIID')[1].reset();
                             Ext.ComponentQuery.query('LoginScreen #passwordIID')[1].reset();
-                            Ext.Msg.alert(Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.error'), 
-                                Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.tryAgainError'))
+                            Ext.Msg.alert(Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.error'),
+                            Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.tryAgainError'))
                         }
                     },
                     failure: function () {
@@ -438,8 +438,8 @@ Ext.define('chw.controller.basic', {
                         } else {
                             Ext.ComponentQuery.query('LoginScreen #usernameIID')[1].reset();
                             Ext.ComponentQuery.query('LoginScreen #passwordIID')[1].reset();
-                            Ext.Msg.alert(Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.error'), 
-                                Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.tryAgainError'))
+                            Ext.Msg.alert(Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.error'),
+                            Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.tryAgainError'))
                         }
                     }
                 })
@@ -450,7 +450,7 @@ Ext.define('chw.controller.basic', {
         }
     },
     doList: function (arg) {
-        if (arg==='familyList') {
+        if (arg === 'familyList') {
             // Set up store for list organized by family
             var fstore = Ext.getStore('families');
             if (!fstore) {
@@ -471,41 +471,41 @@ Ext.define('chw.controller.basic', {
         if (arg) {
             var active = Ext.getCmp('viewPort').getActiveItem();
             console.log(active.id)
-            if (active.getActiveItem()===PAGES.loginScreen) {
+            if (active.getActiveItem() === PAGES.loginScreen) {
                 this.doLogin(arg);
-            } else if (active.id==='ext-panel-4'||active.id==='ext-addFamily-1'){ 
+            } else if (active.id === 'ext-panel-4' || active.id === 'ext-addFamily-1') {
                 //Proceed to add a Family
                 this.doAdd('family', arg);
-            } else if (active.id==='ext-familyDetails-1'){ 
+            } else if (active.id === 'ext-familyDetails-1') {
                 //Proceed to adding a patient. Here the family name and family id is being forwarded to that view.
                 Ext.ComponentQuery.query('AddPatient #familyField')[0].setValue(Ext.ComponentQuery.query('familyDetails #familyTitle')[0].getTitle());
                 Ext.ComponentQuery.query('AddPatient #familyId')[0].setValue(Ext.ComponentQuery.query('familyDetails #familyIdLabel')[0].getValue())
                 Ext.getCmp('viewPort').setActiveItem(PAGES.addPatient);
-            } else if (active.id==='ext-AddPatient-1'){ 
+            } else if (active.id === 'ext-AddPatient-1') {
                 //Execute logic for adding a patient.
                 //Optimization: Instead of calling doOption, the button for adding a patient should directly
                 //call doAdd.
                 this.doAdd('patient', arg);
-            } else if (active.id==='ext-addIllness-1'){
+            } else if (active.id === 'ext-addIllness-1') {
                 //Execute logic for adding an illness
                 //Optimization: Instead of calling doOption, the button for adding an illness should directly
                 //call doAdd.
                 this.doAdd('illness', arg)
             }
         }
-    }, 
+    },
     doToolbar: function (arg) {
         //Toolbar button functionalities
-        if (arg==='list'){
+        if (arg === 'list') {
             Ext.getCmp('viewPort').setActiveItem(PAGES.familyList)
-        } else if (arg==='sync') {
+        } else if (arg === 'sync') {
             //Syncing data
-            Ext.Msg.confirm('',Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.sync'), function (resp) {
-                if (resp==='yes') {
+            Ext.Msg.confirm('', Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.sync'), function (resp) {
+                if (resp === 'yes') {
                     //Send data to server
                 }
             })
-        } else if (arg==='inventory') {
+        } else if (arg === 'inventory') {
             //Show inventory
             var nstore = Ext.getStore('pills')
             if (!nstore) {
@@ -515,12 +515,13 @@ Ext.define('chw.controller.basic', {
             Ext.getCmp('inventoryLists').setStore(nstore)
             // console.log(Ext.getCmp('inventoryLists').getStore())
             Ext.getCmp('viewPort').setActiveItem(PAGES.inventoryList)
-        } else if (arg==='logout') {
+        } else if (arg === 'logout') {
             this.doExit()
-        } else if (arg==='resources') {
+        } else if (arg === 'resources') {
             //Show resources
             Ext.getCmp('viewPort').setActiveItem(PAGES.resourceList)
-        } /*else if (arg==='locate') {
+        }
+        /*else if (arg==='locate') {
             var coords = Ext.ComponentQuery.query('familyDetails #familyMap')[0].getGeo();
             console.log(coords)
             var lat = ''
@@ -529,7 +530,7 @@ Ext.define('chw.controller.basic', {
         }*/
     },
     doVisit: function (arg) {
-        if (arg==='start') {
+        if (arg === 'start') {
             // TODO: get type of visit
             // TODO: get list of tasks associated with visit type
             // var taskList = [VIS.ORS, VIS.RDT, VIS.VITA, VIS.ALB, VIS.BLOOD]

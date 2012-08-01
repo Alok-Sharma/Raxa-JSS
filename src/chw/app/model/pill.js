@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
 //Model for storing inventory details
 Ext.define('chw.model.pill', {
     extend: 'Ext.data.Model',
@@ -39,7 +38,7 @@ Ext.define('chw.model.pill', {
         }, {
             name: 'pillMin',
             type: 'int'
-        }, 
+        },
         // TODO: make it so not hard coded in
         {
             name: 'pillColor',

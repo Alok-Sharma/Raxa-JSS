@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
 //Model for mapping patients with  illnesses
 Ext.define('chw.model.patientIllness', {
     extend: 'Ext.data.Model',
@@ -29,8 +28,8 @@ Ext.define('chw.model.patientIllness', {
             name: 'illnessDetails',
             model: 'chw.model.illness'
         }, {
-           name: 'illnessId',
-           type: 'int'
+            name: 'illnessId',
+            type: 'int'
         }, {
             name: 'illnessStartDate',
             type: 'date'
@@ -45,12 +44,15 @@ Ext.define('chw.model.patientIllness', {
         }, {
             name: 'illnessNotes',
             type: 'string'
-        }/*, {
+        }
+        /*, {
             name: 'illnessIncident',
             type: 'int'
-        }*//*, {
+        }*/
+        /*, {
             name: 'illnessActive',
             type: 'bool'
-        }*/]
+        }*/
+        ]
     }
 })

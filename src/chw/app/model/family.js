@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
 //Model for the family store.
 Ext.define('chw.model.family', {
     extend: 'Ext.data.Model',
@@ -22,10 +21,10 @@ Ext.define('chw.model.family', {
         fields: [{
             name: 'familyId',
             type: 'number'
-        },{
+        }, {
             name: 'familyName',
             type: 'string'
-        },{
+        }, {
             name: 'familyAddress',
             type: 'string'
         }, {

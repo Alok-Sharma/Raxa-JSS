@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
 //Model for storing  patient info
 Ext.define('chw.model.patient', {
     extend: 'Ext.data.Model',
@@ -22,10 +21,10 @@ Ext.define('chw.model.patient', {
         fields: [{
             name: 'familyId',
             type: 'string'
-        },{
+        }, {
             name: 'patientId',
             type: 'string'
-        },{
+        }, {
             name: 'firstName',
             type: 'string'
         }, {
@@ -43,9 +42,11 @@ Ext.define('chw.model.patient', {
         }, {
             name: 'patientImage',
             type: 'string'
-        }/*, {
+        }
+        /*, {
             name: 'patientIllnesses',
             type: 'chw.model.illnessModel'
-        }*/]
+        }*/
+        ]
     }
 })

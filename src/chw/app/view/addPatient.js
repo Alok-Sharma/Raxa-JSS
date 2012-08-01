@@ -41,12 +41,12 @@ Ext.define('chw.view.addPatient', {
                     labelWidth: '35%'
                 },
                 items: [{
-                    xtype:'textfield',
-                    hidden:true,
-                    required:true,
+                    xtype: 'textfield',
+                    hidden: true,
+                    required: true,
                     itemId: 'familyId',
                     disabled: true
-                },{
+                }, {
                     xtype: 'textfield',
                     label: Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.family'),
                     disabled: true,

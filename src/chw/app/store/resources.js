@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
 //Storing resources. Also hard-coded
 Ext.define('chw.store.resources', {
     extend: 'Ext.data.Store',

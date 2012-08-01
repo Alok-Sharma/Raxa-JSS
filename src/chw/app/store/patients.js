@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
 //Storing patient info
 Ext.define('chw.store.patients', {
     extend: 'Ext.data.Store',
@@ -24,7 +23,7 @@ Ext.define('chw.store.patients', {
         grouper: function (record) {
             return record.get('familyName')[0];
         },
-         proxy: {
+        proxy: {
             type: 'localstorage',
             id: 'patients'
         }

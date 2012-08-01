@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
 //Pills store. Pills are hard-coded currently
 Ext.define('chw.store.pills', {
     extend: 'Ext.data.Store',
@@ -23,7 +22,7 @@ Ext.define('chw.store.pills', {
         sorters: 'pillName',
         grouper: function (record) {
             return record.get('pillName')[0];
-        }, 
+        },
         data: [{
             pillName: 'Ciprofloxacin',
             pillDescrip: 'Antibiotic for bowel issues',
