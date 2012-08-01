@@ -69,9 +69,6 @@ Ext.define('chw.view.addFamily', {
                     clearIcon: true
                 }]
             }, {
-                xtype: 'button',
-                text: Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.selectImage')
-            }, {
                 xclass: 'chw.view.okCancel'
             }]
         }]

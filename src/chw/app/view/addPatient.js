@@ -48,17 +48,6 @@ Ext.define('chw.view.addPatient', {
                     disabled: true
                 }, {
                     xtype: 'textfield',
-                    label: Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.family'),
-                    disabled: true,
-                    required: true,
-                    itemId: 'familyField',
-                    // TODO: how do you randomly generate this?
-                    options: [{
-                        text: '',
-                        value: 'empty'
-                    }]
-                }, {
-                    xtype: 'textfield',
                     label: Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.name'),
                     itemId: 'firstName',
                     placeHolder: 'Vikram',
@@ -94,7 +83,6 @@ Ext.define('chw.view.addPatient', {
                         flex: 1
                     }]
                 }, {
-                    // Also include option for current age?
                     xtype: 'datepickerfield',
                     destroyPickerOnHide: true,
                     name: 'bday',

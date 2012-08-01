@@ -77,7 +77,6 @@ Ext.define('chw.view.patientDetails', {
                         placeHolder: 'Gender',
                         itemId: 'patientGenderLabel'
                     }, {
-                        //TODO: Change from Age to Bday
                         xtype: 'textfield',
                         label: Ext.i18n.appBundle.getMsg('RaxaEmr.view.textfield.age'),
                         placeHolder: 'Age',

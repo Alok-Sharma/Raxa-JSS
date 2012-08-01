@@ -70,11 +70,6 @@ Ext.define('chw.controller.basic', {
                     this.doToolbar('list')
                 }
             },
-            //            "button[action=locateButton]": {
-            //                tap: function () {
-            //                    this.doToolbar('locate')
-            //                }
-            //            },
             "button[action=logoutButton]": {
                 tap: function () {
                     this.doToolbar('logout')
@@ -521,20 +516,12 @@ Ext.define('chw.controller.basic', {
             //Show resources
             Ext.getCmp('viewPort').setActiveItem(PAGES.resourceList)
         }
-        /*else if (arg==='locate') {
-            var coords = Ext.ComponentQuery.query('familyDetails #familyMap')[0].getGeo();
-            console.log(coords)
-            var lat = ''
-            var lng = ''
-            Ext.Msg.confirm('Confirm','Use')
-        }*/
     },
     doVisit: function (arg) {
         if (arg === 'start') {
             // TODO: get type of visit
             // TODO: get list of tasks associated with visit type
-            // var taskList = [VIS.ORS, VIS.RDT, VIS.VITA, VIS.ALB, VIS.BLOOD]
-            var taskList = []
+            var taskList = [VIS.ORS, VIS.RDT, VIS.VITA, VIS.ALB, VIS.BLOOD]
             // get container for task buttons
             var c = Ext.ComponentQuery.query('visitDetails #visitChecklist')[0]
             var cont = Ext.create('Ext.Container', {

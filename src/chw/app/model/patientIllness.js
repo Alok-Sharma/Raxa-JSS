@@ -33,26 +33,15 @@ Ext.define('chw.model.patientIllness', {
         }, {
             name: 'illnessStartDate',
             type: 'date'
-            // dateFormat: 'g:i a'
         }, {
             name: 'illnessEndDate',
             type: 'date'
-            // dateFormat: 'g:i a'
         }, {
             name: 'illnessTreatment',
             type: 'string'
         }, {
             name: 'illnessNotes',
             type: 'string'
-        }
-        /*, {
-            name: 'illnessIncident',
-            type: 'int'
-        }*/
-        /*, {
-            name: 'illnessActive',
-            type: 'bool'
-        }*/
-        ]
+        }]
     }
 })

@@ -23,7 +23,6 @@ Ext.define('chw.model.visit', {
         }, {
             name: 'visitText',
             type: 'string'
-
         }, {
             name: 'visitDetail',
             type: 'string'
@@ -33,7 +32,6 @@ Ext.define('chw.model.visit', {
         }, {
             name: 'visitComplete',
             type: 'boolean'
-
         }, {
             name: 'visitInclude',
             type: 'boolean'

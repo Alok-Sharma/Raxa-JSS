@@ -16,7 +16,8 @@
 Ext.Loader.setConfig({
     enabled: true,
     paths: {
-        'Ext.i18n': '../lib/i18n' //Path to i18n library for localization
+        //Path to i18n library for localization
+        'Ext.i18n': '../lib/i18n'
     }
 });
 
