@@ -473,7 +473,7 @@ Ext.define('chw.controller.basic', {
                 this.doAdd('family', arg);
             } else if (active.id === 'ext-familyDetails-1') {
                 //Proceed to adding a patient. Here the family name and family id is being forwarded to that view.
-                Ext.ComponentQuery.query('AddPatient #familyField')[0].setValue(Ext.ComponentQuery.query('familyDetails #familyTitle')[0].getTitle());
+                // Ext.ComponentQuery.query('AddPatient #familyField')[0].setValue(Ext.ComponentQuery.query('familyDetails #familyTitle')[0].getTitle());
                 Ext.ComponentQuery.query('AddPatient #familyId')[0].setValue(Ext.ComponentQuery.query('familyDetails #familyIdLabel')[0].getValue())
                 Ext.getCmp('viewPort').setActiveItem(PAGES.addPatient);
             } else if (active.id === 'ext-AddPatient-1') {
